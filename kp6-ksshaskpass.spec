@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.3.3
+%define		kdeplasmaver	6.3.4
 %define		qtver		5.15.2
 %define		kpname		ksshaskpass
 Summary:	ssh-add helper that uses kwallet and kpassworddialog
 Name:		kp6-%{kpname}
-Version:	6.3.3
+Version:	6.3.4
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	76fffc04576b64fa1868ab2822dbda6f
+# Source0-md5:	1b963f2d52c15e549320534b47532563
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16.0
