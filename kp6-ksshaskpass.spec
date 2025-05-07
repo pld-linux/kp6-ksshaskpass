@@ -1,17 +1,17 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.3.4
+%define		kdeplasmaver	6.3.5
 %define		qtver		5.15.2
 %define		kpname		ksshaskpass
 Summary:	ssh-add helper that uses kwallet and kpassworddialog
 Name:		kp6-%{kpname}
-Version:	6.3.4
+Version:	6.3.5
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	1b963f2d52c15e549320534b47532563
+# Source0-md5:	c09d6d1e59fb63804ad99c4f387f5929
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16.0
@@ -25,7 +25,8 @@ BuildRequires:	qt6-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Obsoletes:	kp5-%{kpname} < %{version}
+Requires(post,postun):	desktop-file-utils
+Obsoletes:	kp5-%{kpname} < 6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,8 +56,13 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%update_desktop_database_post
+
+%postun
+/sbin/ldconfig
+%update_desktop_database_postun
 
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
