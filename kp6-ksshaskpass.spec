@@ -33,6 +33,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Ssh-add helper that uses kwallet and kpassworddialog.
 
+%description -l pl.UTF-8
+Program pomocniczy do ssh, który korzysta z kwallet i kpassworddialog.
+
 %prep
 %setup -q -n %{kpname}-%{version}
 
